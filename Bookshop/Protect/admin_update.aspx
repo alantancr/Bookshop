@@ -64,7 +64,7 @@
     
         <div class="two">
             <asp:GridView ID="GridView1" runat="server" DataSourceID="SqlDataSource1" AllowPaging="True" 
-                OnRowDeleting="GridView1_RowDeleting" OnRowEditing="GridView1_RowEditing" AutoGenerateColumns="False"
+                OnRowDeleting="GridView1_RowDeleting" OnRowEditing="GridView1_RowEditing" AutoGenerateColumns="False" DataKeyNames="BookID"
                 >
                 <AlternatingRowStyle BackColor="Silver" BorderStyle="Double" BorderWidth="2px" Font-Names="Book Antiqua" />
                 <Columns>
@@ -78,7 +78,6 @@
                     <asp:BoundField DataField="Synopsis" HeaderText="Synopsis" SortExpression="Synopsis" />
                     <asp:BoundField DataField="SWdiscount" HeaderText="SWdiscount" SortExpression="SWdiscount" />
                     <asp:BoundField DataField="finalprice" HeaderText="finalprice" SortExpression="finalprice" />
-                    <asp:CommandField ButtonType="Button" ShowDeleteButton="True" ShowEditButton="True"/>
 
               
 
@@ -89,7 +88,7 @@
                
 
             </asp:GridView>
-            <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:BookshopConnectionString3 %>" SelectCommand="SELECT [BookID], [Title], [CategoryID], [ISBN], [Author], [Stock], [Price], [Synopsis], [SWdiscount], [finalprice] FROM [Book]"></asp:SqlDataSource>
+            <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:BookshopEntities %>" SelectCommand="SELECT [BookID], [Title], [CategoryID], [ISBN], [Author], [Stock], [Price], [Synopsis], [SWdiscount], [finalprice] FROM [Book]"></asp:SqlDataSource>
         
         </div>
         
