@@ -13,7 +13,7 @@ namespace Bookshop
         {
 
             string url = (string)Session["url"];
-            Label1.Text = url;
+            
 
             //string x = "~/login.aspsx";
             //if (url == x)
