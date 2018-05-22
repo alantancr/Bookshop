@@ -93,6 +93,7 @@
     <Content Include="Reference\css\Admin.css" />
     <Content Include="Reference\css\Admin_add.css" />
     <Content Include="Reference\css\Browse.css" />
+    <Content Include="Reference\css\cart.css" />
     <Content Include="Reference\css\Default.css" />
     <Content Include="Reference\css\Details.css" />
     <Content Include="Reference\css\Login.css" />

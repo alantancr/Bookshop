@@ -1,0 +1,24 @@
+﻿.container{
+    background-color: white;
+    border-radius: 1%;
+    margin-bottom: 2.5vh;
+}
+
+.bookImage{
+    display: block;
+    height: 25vh;
+    margin-top: 2.5vh;
+    margin-bottom: 2.5vh;
+}
+
+.btn-continue-browsing{
+    background-color: #8285ff;
+    color: white;
+    margin-right: 1.5vw;
+    margin-bottom: 2.5vh;
+}
+
+.btn-checkout{
+    margin-left: 1.5vw;
+    margin-bottom: 2.5vh;
+}
