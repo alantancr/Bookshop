@@ -1,0 +1,14 @@
+﻿.container{
+    background-color: white;
+    border-radius: 1%;
+    max-height: 80vh;
+}
+
+#header_text{
+    margin-bottom: 5vh;
+}
+
+#confirmation_checkmark{
+    border-radius: 100%;
+    width: 25%;
+}
