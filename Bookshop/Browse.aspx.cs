@@ -36,8 +36,8 @@ namespace Bookshop
             }
 
             // Fix for ASPNet Grid views, to work with Bootstrap Tables
-            GridView1.UseAccessibleHeader = true;
-            GridView1.HeaderRow.TableSection = TableRowSection.TableHeader;
+            //GridView1.UseAccessibleHeader = true;
+            //GridView1.HeaderRow.TableSection = TableRowSection.TableHeader;
         }
 
         protected void DropDownList1_SelectedIndexChanged(object sender, EventArgs e)
@@ -69,8 +69,11 @@ namespace Bookshop
             using (BookshopModel ctx = new BookshopModel())
             {
                 var q = ctx.Books.Where(x => x.Title.Contains(TextBox1.Text));
-                GridView1.DataSource = q.ToList<Book>();
-                GridView1.DataBind();
+                if (q != null)
+                {
+                    GridView1.DataSource = q.ToList<Book>();
+                    GridView1.DataBind();
+                }
             }
         }
 
