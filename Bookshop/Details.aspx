@@ -1,9 +1,9 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Bookstore.Master" AutoEventWireup="true" CodeBehind="Details.aspx.cs" Inherits="Bookshop.Details" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
-    <link rel="stylesheet" href="References/CSS/Details.css" />
+	<link rel="stylesheet" href="References/CSS/Details.css" />
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-    <div class="container">
+	<div class="container">
     <div class="row">
         <div class="col-md-6"><img src="Reference/Images/placeholder.png" id="book-image"></div>
         <div class="col-md-6">
