@@ -15,7 +15,7 @@
         <h3>Search For a book:</h3>
         <asp:TextBox ID="TextBox1" runat="server"></asp:TextBox>
 
-        <asp:DropDownList ID="DropDownList1" runat="server" OnSelectedIndexChanged="DropDownList1_SelectedIndexChanged">
+        <asp:DropDownList ID="DropDownList1" runat="server" OnSelectedIndexChanged="DropDownList1_SelectedIndexChanged" AutoPostBack="True">
             <asp:ListItem Value="0">Category</asp:ListItem>
         </asp:DropDownList>
 
