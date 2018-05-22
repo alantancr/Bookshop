@@ -11,7 +11,11 @@ namespace Bookshop
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            
+            // Grab the attributes from the URL
+           // String id = Request.QueryString();
+
+
+            // Transform the page to match page details.
         }
     }
 }
