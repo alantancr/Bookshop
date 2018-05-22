@@ -3,5 +3,7 @@
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     
-    <asp:Button ID="Button1" runat="server" OnClick="Button1_Click" Text="Button" />
+    <asp:Button ID="Button1" runat="server" OnClick="Button1_Click" Text="Checkout" />
+    <asp:GridView ID="GridView1" runat="server">
+    </asp:GridView>
 </asp:Content>
