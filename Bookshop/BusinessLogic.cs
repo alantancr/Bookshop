@@ -165,5 +165,75 @@ namespace Bookshop
             { return entities.OrderDetails.Where(p => p.OrderID == OID).ToList<OrderDetail>(); }
         }
 
-    }
+		//To add Book
+
+		protected void Savebook(string title, int categoryid, string isbn, string author, int stock, decimal price,
+			string synopsis, decimal discount)
+		{
+			using (BookshopModel entities = new BookshopModel())
+			{
+				Book b = new Book()
+				{
+					Title = title,
+					CategoryID = categoryid,
+					ISBN = isbn,
+					Author = author,
+					Stock = stock,
+					Price = price,
+					Synopsis = synopsis,
+					SWdiscount = 1 - (discount / 100),
+					finalprice = price * (1 - (discount / 100)),
+				};
+				entities.Books.Add(b);
+				entities.SaveChanges();
+			}
+		}
+
+		//Toaddcategory
+		protected void SaveCategory(string category)
+		{
+			using (BookshopModel entities = new BookshopModel())
+			{
+				Category c = new Category()
+				{
+					Name = category,
+				};
+				entities.Categories.Add(c);
+				entities.SaveChanges();
+			}
+		}
+
+		//Toupdatebook
+		public static void UpdateBook(int bookid, string title, int categoryid, string isbn, string author, int stock, decimal price,
+			string synopsis, decimal discount)
+		{
+			using (BookshopModel entities = new BookshopModel())
+			{
+				Book book = entities.Books.Where(p => p.BookID == bookid).First<Book>();
+				book.Title = title;
+				book.CategoryID = categoryid;
+				book.ISBN = isbn;
+				book.Author = author;
+				book.Stock = stock;
+				book.Price = price;
+				book.Synopsis = synopsis;
+				book.SWdiscount = 1 - (discount / 100);
+				book.finalprice = price * (1 - (discount / 100));
+				entities.SaveChanges();
+			}
+		}
+
+		//Todeletebook
+		public static void DeleteBook(int bookid)
+		{
+			using (BookshopModel entities = new BookshopModel())
+			{
+				Book book = entities.Books.Where(p => p.BookID == bookid).First<Book>();
+				entities.Books.Remove(book);
+				entities.SaveChanges();
+			}
+		}
+
+
+	}
 }
