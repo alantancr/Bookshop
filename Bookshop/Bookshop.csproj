@@ -89,6 +89,7 @@
     <Content Include="Protect\admin_update.aspx" />
     <Content Include="Protect\Default.aspx" />
     <Content Include="Protect\user.aspx" />
+    <Content Include="Reference\css\Admin.css" />
     <Content Include="Reference\css\Browse.css" />
     <Content Include="Reference\css\Default.css" />
     <Content Include="Reference\css\Details.css" />
