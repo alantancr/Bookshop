@@ -21,7 +21,4 @@
     </compilers>
   </system.codedom>
 
-  <connectionStrings>
-    <add name="BookshopEntities" connectionString="data source=(local);initial catalog=Bookshop;integrated security=True;MultipleActiveResultSets=True;App=EntityFramework" providerName="System.Data.SqlClient" />
-  </connectionStrings>
-</configuration>
+<connectionStrings><add name="BookshopEntities" connectionString="data source=(local);initial catalog=Bookshop;integrated security=True;MultipleActiveResultSets=True;App=EntityFramework" providerName="System.Data.SqlClient" /></connectionStrings></configuration>

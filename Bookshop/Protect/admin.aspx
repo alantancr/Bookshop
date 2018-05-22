@@ -1,24 +1,19 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Bookstore.Master" AutoEventWireup="true" CodeBehind="admin.aspx.cs" Inherits="Bookshop.Protect.admin" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
-</asp:Content>
+	</asp:Content>
 
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-    <div align="center">
-    <asp:Label ID="Label1" runat="server" Text="admin"></asp:Label>
-    
-
-    <asp:RadioButtonList ID="RadioButtonList1" align="center" runat="server">
-        <asp:ListItem>Update</asp:ListItem>
-        <asp:ListItem>Add</asp:ListItem>
-    </asp:RadioButtonList>
+	<div>
+    	Admin<br />
+		<br />
+		<asp:Button ID="Button1" runat="server" Text="Button" OnClick="Button1_Click" />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<asp:Button ID="Button2" runat="server" Text="Button" OnClick="Button1_Click" />
+		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<asp:TextBox ID="TextBox1" runat="server"></asp:TextBox>
+		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<asp:Button ID="Button3" runat="server" Text="Button" Height="17px" OnClick="Button1_Click" />
     <br/>
-    
-    <asp:Button ID="Button1" runat="server" align="center" Text="Enter" />
     
     <br/>
         <br/>
 
-    <asp:GridView ID="GridView1" align="center" runat="server"></asp:GridView>
-    
     </div>
 </asp:Content>

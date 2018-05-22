@@ -1,0 +1,17 @@
+﻿.form-container{
+    background-color: white;
+    padding-bottom: 2.5vh;
+    border-radius: 1%;
+}
+
+.btn-container{
+
+}
+
+.btn-success{
+    margin-right: 2.5%;
+}
+
+.btn-warning{
+    margin-left: 2.5%;
+}

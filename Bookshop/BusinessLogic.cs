@@ -167,7 +167,7 @@ namespace Bookshop
 
 		//To add Book
 
-		protected void Savebook(string title, int categoryid, string isbn, string author, int stock, decimal price,
+		public static void Savebook(string title, int categoryid, string isbn, string author, int stock, decimal price,
 			string synopsis, decimal discount)
 		{
 			using (BookshopModel entities = new BookshopModel())
@@ -190,7 +190,7 @@ namespace Bookshop
 		}
 
 		//Toaddcategory
-		protected void SaveCategory(string category)
+		public static void SaveCategory(string category)
 		{
 			using (BookshopModel entities = new BookshopModel())
 			{
@@ -204,8 +204,8 @@ namespace Bookshop
 		}
 
 		//Toupdatebook
-		public static void UpdateBook(int bookid, string title, int categoryid, string isbn, string author, int stock, decimal price,
-			string synopsis, decimal discount)
+		public static void UpdateBook(int bookid, string title, int categoryid, string isbn, string author, int stock, decimal finalprice,
+			string synopsis)
 		{
 			using (BookshopModel entities = new BookshopModel())
 			{
@@ -215,10 +215,8 @@ namespace Bookshop
 				book.ISBN = isbn;
 				book.Author = author;
 				book.Stock = stock;
-				book.Price = price;
+				book.finalprice = finalprice;
 				book.Synopsis = synopsis;
-				book.SWdiscount = 1 - (discount / 100);
-				book.finalprice = price * (1 - (discount / 100));
 				entities.SaveChanges();
 			}
 		}
@@ -234,6 +232,22 @@ namespace Bookshop
 			}
 		}
 
+        //discount
+        public static void discount(decimal discount)
+        {
+            using (BookshopModel entities = new BookshopModel())
+            {
+                foreach(Book b in entities.Books.ToList())
+                {
+                    b.finalprice = b.Price * (1 - (discount / 100));
+                    b.SWdiscount = 1-discount/100;
+                    entities.SaveChanges();
+                }
+            
+            }
 
-	}
+
+        }
+
+    }
 }

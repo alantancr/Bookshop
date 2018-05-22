@@ -26,22 +26,6 @@ namespace Bookshop
 
         protected void CreateUserWizard1_CreatedUser(object sender, EventArgs e)
         {
-            string s = "~/protect/default.aspx";
-            string url = (string)Session["url"];
-            if (Request.QueryString["checkout"] == "true")
-            {
-                s += "?checkout=true";
-            }
-            else
-            {
-                Response.Redirect(url);
-            }
-          
-            
-        }
-
-        protected void LoginButton_Click(object sender, EventArgs e)
-        {
             Response.Redirect("~/protect/user.aspx");
         }
     }

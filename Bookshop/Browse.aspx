@@ -15,7 +15,7 @@
         <h3>Search For a book:</h3>
         <asp:TextBox ID="TextBox1" runat="server"></asp:TextBox>
 
-        <asp:DropDownList ID="DropDownList1" runat="server" OnSelectedIndexChanged="DropDownList1_SelectedIndexChanged">
+        <asp:DropDownList ID="DropDownList1" runat="server" OnSelectedIndexChanged="DropDownList1_SelectedIndexChanged" AutoPostBack="True">
             <asp:ListItem Value="0">Category</asp:ListItem>
         </asp:DropDownList>
 
@@ -26,7 +26,7 @@
     <h3>Search Results</h3>
     <div style="margin-left: 40px">
 
-            <asp:GridView ID="GridView1" GridLines="None" runat="server" AutoGenerateColumns="False" Width="676px" CssClass="table table-dark">
+            <asp:GridView ID="GridView1" GridLines="None" runat="server" AutoGenerateColumns="False" Width="676px" CssClass="table table-dark" OnRowDataBound="GridView1_RowDataBound">
                 <Columns>
                     <asp:TemplateField>
                         <ItemTemplate>
@@ -37,17 +37,18 @@
                     <asp:BoundField DataField="Author" HeaderText="Author" />        
                     <asp:BoundField DataField="Category.Name" HeaderText="Category" />
                     <asp:BoundField DataField="ISBN" HeaderText="ISBN" />
-                    <asp:BoundField DataField="Price" HeaderText="Price" />
+                    <asp:BoundField DataField="Price" HeaderText="Price" Dataformatstring="{0:c2}"/>
+                    <asp:BoundField DataField="Stock" HeaderText="Qty" />
                     <asp:TemplateField ShowHeader="False">
                         <ItemTemplate>
-                            <asp:Button ID="Button1" runat="server" CausesValidation="false" CommandName="" OnClick="Button1_Click1" Text="Add to Cart" CssClass="btn btn-add-to-cart"/>
+                            <asp:Button ID="Button1" runat="server" CommandName="" OnClick="Button1_Click1" Text="Add to Cart" CssClass="btn btn-add-to-cart" />
                             <asp:HiddenField ID="HiddenFieldID" runat="server" Value='<%# Eval("BookID") %>' />
                         </ItemTemplate>
                     </asp:TemplateField>
                     <asp:TemplateField ShowHeader="False">
                         <ItemTemplate>
                             <asp:Button ID="Button2" runat="server" CausesValidation="false" CommandName="" Text="View Details" OnClick="Button2_Click" CssClass="btn btn-view-details" />
-                        <asp:HiddenField ID="HiddenField1" runat="server" Value='<%# Eval("BookID") %>' />
+                        <asp:HiddenField ID="HiddenField1" runat="server" Value='<%# Eval("ISBN") %>' />
                         </ItemTemplate>
                     </asp:TemplateField>
                     
@@ -58,4 +59,5 @@
         
         </div>
     </div>
+    <asp:Label ID="lbFootnote" runat="server" Text="Label"></asp:Label>
 </asp:Content>

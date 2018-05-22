@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using System.Transactions;
 
 namespace Bookshop
 {
@@ -15,8 +16,18 @@ namespace Bookshop
             {
                 using (BookshopModel b = new BookshopModel())
                 {
-                    GridView1.DataSource = b.Books.ToList<Book>();
-                    GridView1.DataBind();
+                    if (Session["query"] != null)
+                    {
+                        TextBox1.Text = Session["query"].ToString();
+                        SearchByTitle();
+                        Session["query"] = null;
+                    }
+                    else
+                    {
+                        GridView1.DataSource = b.Books.ToList<Book>();
+                        GridView1.DataBind();
+                    }
+                    
                     var q = b.Categories.Select(x => x.Name).ToList();
                     foreach (Category x in b.Categories)
                     {
@@ -26,8 +37,8 @@ namespace Bookshop
             }
 
             // Fix for ASPNet Grid views, to work with Bootstrap Tables
-            GridView1.UseAccessibleHeader = true;
-            GridView1.HeaderRow.TableSection = TableRowSection.TableHeader;
+            //GridView1.UseAccessibleHeader = true;
+            //GridView1.HeaderRow.TableSection = TableRowSection.TableHeader;
         }
 
         protected void DropDownList1_SelectedIndexChanged(object sender, EventArgs e)
@@ -54,14 +65,22 @@ namespace Bookshop
             }
         }
 
-        protected void Button1_Click(object sender, EventArgs e)
+        protected void SearchByTitle()
         {
             using (BookshopModel ctx = new BookshopModel())
             {
                 var q = ctx.Books.Where(x => x.Title.Contains(TextBox1.Text));
-                GridView1.DataSource = q.ToList<Book>();
-                GridView1.DataBind();
+                if (q != null)
+                {
+                    GridView1.DataSource = q.ToList<Book>();
+                    GridView1.DataBind();
+                }
             }
+        }
+
+        protected void Button1_Click(object sender, EventArgs e)
+        {
+            SearchByTitle();
         }
 
         protected void Button1_Click1(object sender, EventArgs e)
@@ -70,56 +89,86 @@ namespace Bookshop
             HiddenField hd = (HiddenField)lb.FindControl("HiddenFieldID");
             int id = Convert.ToInt32(hd.Value);
             BookshopModel b = new BookshopModel();
-            if (Session["cart"] == null)
+            using(TransactionScope ts = new TransactionScope())
             {
-                List<Item> cart = new List<Item>();
-                cart.Add(new Item(b.Books.Where(x => x.BookID == id).First(), 1));
-                Session["cart"] = cart;
-
+                if (Session["cart"] == null)
+                {
+                    List<Item> cart = new List<Item>();
+                    cart.Add(new Item(b.Books.Where(x => x.BookID == id).First(), 1));
+                    Session["cart"] = cart;
+                }
+                else
+                {
+                    List<Item> cart = (List<Item>)Session["cart"];
+                    int index = isExisting(id);
+                    if (index == -1)
+                    {
+                        cart.Add(new Item(b.Books.Where(x => x.BookID == id).First(), 1));
+                    }
+                    else
+                    {
+                        cart[index].Quantity++;
+                        Session["cart"] = cart;
+                    }
+                    Transaction.Current.TransactionCompleted += Current_TransactionCompleted;
+                    ts.Complete();
+                }
             }
-            else
-            {
-                List<Item> cart = (List<Item>)Session["cart"];
-                cart.Add(new Item(b.Books.Where(x => x.BookID == id).First(), 1));
-                Session["cart"] = cart;
-            }
-
+            
         }
 
-        public class Item
+        private void Current_TransactionCompleted(object sender, TransactionEventArgs e)
         {
-            private Book book = new Book();
-            private int quantity;
-
-            public Item()
+            if (e.Transaction.TransactionInformation.Status == TransactionStatus.Committed)
             {
-
+                MsgBox("Item added to cart...");
             }
-
-            public Item(Book book, int quantity)
+            else if (e.Transaction.TransactionInformation.Status == TransactionStatus.Aborted)
             {
-                this.book = book;
-                this.quantity = quantity;
+                MsgBox("ERROR: Failed adding item to cart..");
             }
+        }
 
-            public Book Book
-            {
-                get { return book; }
-                set { book = value; }
-            }
-            public int Quantity
-            {
-                get { return quantity; }
-                set { quantity = value; }
-            }
+        private void MsgBox(string sMessage)
+        {
+            string msg = "<script language=\"javascript\">";
+            msg += "alert('" + sMessage + "');";
+            msg += "</script>";
+            Response.Write(msg);
+        }
+
+        private int isExisting(int id)
+        {
+            List<Item> cart = (List<Item>)Session["cart"];
+            for(int i=0;i<cart.Count;i++)
+                if (cart[i].BK.BookID == id)
+                    return i;
+                return - 1;
         }
 
         protected void Button2_Click(object sender, EventArgs e)
         {
             Button lb = (Button)sender;
             HiddenField hd = (HiddenField)lb.FindControl("HiddenField1");
-            string id = hd.Value;
-            Response.Redirect("Details.aspx?id=" +id);
+            string isbn = hd.Value;
+            Session["isbn"] = isbn;
+            Response.Redirect("Details.aspx?isbn=" + isbn);
+        }
+
+        protected void GridView1_RowDataBound(object sender, GridViewRowEventArgs e)
+        {
+            if (e.Row.RowType == DataControlRowType.DataRow)
+            {
+                if (Convert.ToInt32(e.Row.Cells[6].Text) < 1)
+                {
+                    Button button = (Button)e.Row.FindControl("Button1");
+                    button.Enabled = false;
+                    button.BackColor = System.Drawing.Color.DarkGray;
+                    button.Text = "OUT OF STOCK";
+
+                }
+
+            }
         }
     }
 }
