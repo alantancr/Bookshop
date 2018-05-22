@@ -7,17 +7,11 @@ using System.Web.UI.WebControls;
 
 namespace Bookshop
 {
-    public partial class cart : System.Web.UI.Page
+    public partial class Details : System.Web.UI.Page
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            //Populate the grid with items in the cart
-
-        }
-
-        protected void Button1_Click(object sender, EventArgs e)
-        {
-            Response.Redirect("~/protect/Default.aspx");
+            
         }
     }
 }

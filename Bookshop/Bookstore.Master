@@ -29,19 +29,15 @@
             <ul class="nav navbar-nav">
                 <li><a href="default.aspx">Home</a></li>
                 <li><a href="Browse.aspx">Browse</a></li>
-                <li><a href="#">Page 2</a></li>
-                <li><a href="#">Page 3</a></li>
             </ul>
     
             <!-- Navbar right-->
             
             <ul class="nav navbar-nav navbar-right">
-                <li><a href="createuser.aspx"><span class="glyphicon glyphicon-user" style="width: 4px"></span> Sign Up</a></li>
+                <li><a href="login.aspx"><span class="glyphicon glyphicon-shopping-cart"></span> View Cart</a></li>
+                <li><a href="createuser.aspx"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
                 <li><a href="login.aspx"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
             </ul>
-             
-           
-
         </div>
 
 

@@ -1,0 +1,33 @@
+﻿body {
+}
+
+.container-search{
+    background-color: #eae7ff;
+    padding-bottom: 20px;
+}
+
+.container-search-results{
+    background-color: #f5f9fe;
+    margin-top: 10px;
+}
+
+.btn-search {
+    background-color: #3d7cb9;
+    font-family: Arial;
+    color: white;
+    font-weight: bold;
+}
+
+.btn-add-to-cart{
+    background-color: #148616;
+    font-family: Arial;
+    color: white;
+    font-weight: bold;
+}
+
+.btn-view-details {
+    background-color: #f5a323;
+    font-family: Arial;
+    color: white;
+    font-weight: bold;
+}
