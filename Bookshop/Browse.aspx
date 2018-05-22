@@ -44,7 +44,6 @@
                             <asp:Button ID="Button1" runat="server" CausesValidation="false" CommandName="SendMail"
                             Text="SendMail" CommandArgument='<%# Eval("id") %>' />
                             <asp:Button ID="ViewDetailsButton" runat="server" Text="View Details"  CommandName="ViewDetails" CssClass="btn btn-view-details" CommandArgument="<%Eval(); %>""/>
-
                         </ItemTemplate>
                     </asp:TemplateField>
 
