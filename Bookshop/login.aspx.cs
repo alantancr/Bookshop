@@ -12,21 +12,24 @@ namespace Bookshop
         protected void Page_Load(object sender, EventArgs e)
         {
 
-            string url = (string)Session["url"];
-            
-
-            //string x = "~/login.aspsx";
-            //if (url == x)
-            //{
-            //    Response.Redirect("~/cart.aspx");
-            //}
-
-
         }
 
         protected void CreateUserWizard1_CreatedUser(object sender, EventArgs e)
         {
-            Response.Redirect("~/protect/user.aspx");
+
+        }
+
+        protected void LoginButton_Click(object sender, EventArgs e)
+        {
+            if (User.IsInRole("user"))
+            {
+                Response.Redirect("/protect/default.aspx");
+            }
+
+            else if (User.IsInRole("admin"))
+            {
+                Response.Redirect("/protect/admin.aspx");
+            }
         }
     }
 }

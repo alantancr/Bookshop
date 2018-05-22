@@ -47,7 +47,7 @@
                                 <tr>
                                     <td align="right" colspan="2">
                                         <div class="btn btn-info  glyphicon glyphicon-lockr">
-                                        <asp:Button ID="LoginButton" runat="server" BackColor="Transparent" BorderWidth="0" CommandName="Login" Text="Proceed" ValidationGroup="Login1" OnClick="LoginButton_Click" />
+                                        <asp:Button ID="LoginButton" runat="server" BackColor="Transparent" BorderWidth="0" CommandName="Login" Text="Proceed" ValidationGroup="Login1" />
                                         </div>
                                         </td>
                                 </tr>
