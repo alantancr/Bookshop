@@ -21,7 +21,7 @@ namespace Bookshop
 
         protected void LoginButton_Click(object sender, EventArgs e)
         {
-            Response.Redirect("~/protect/user.aspx");
+            Response.Redirect("~/protect/default.aspx");
         }
     }
 }

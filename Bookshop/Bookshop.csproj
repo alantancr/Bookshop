@@ -95,6 +95,7 @@
     <Content Include="Reference\css\Browse.css" />
     <Content Include="Reference\css\Default.css" />
     <Content Include="Reference\css\Details.css" />
+    <Content Include="Reference\css\Login.css" />
     <Content Include="Reference\css\Master.css" />
     <Content Include="Reference\Images\9780060555665.jpg" />
     <Content Include="Reference\Images\9780062377210.jpg" />

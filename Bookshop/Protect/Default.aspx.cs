@@ -13,6 +13,7 @@ namespace Bookshop.Protect
         {
             if (User.IsInRole("user"))
             {
+              
                 Response.Redirect("~/protect/user.aspx");
             }
             else if (User.IsInRole("admin"))
