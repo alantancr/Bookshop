@@ -75,43 +75,30 @@ namespace Bookshop
                 List<Item> cart = new List<Item>();
                 cart.Add(new Item(b.Books.Where(x => x.BookID == id).First(), 1));
                 Session["cart"] = cart;
-
             }
             else
             {
                 List<Item> cart = (List<Item>)Session["cart"];
-                cart.Add(new Item(b.Books.Where(x => x.BookID == id).First(), 1));
-                Session["cart"] = cart;
+                int index = isExisting(id);
+                if (index == -1)
+                {
+                    cart.Add(new Item(b.Books.Where(x => x.BookID == id).First(), 1));
+                }
+                else
+                {
+                    cart[index].Quantity++;
+                    Session["cart"] = cart;
+                }
             }
-
         }
 
-        public class Item
+        private int isExisting(int id)
         {
-            private Book book = new Book();
-            private int quantity;
-
-            public Item()
-            {
-
-            }
-
-            public Item(Book book, int quantity)
-            {
-                this.book = book;
-                this.quantity = quantity;
-            }
-
-            public Book Book
-            {
-                get { return book; }
-                set { book = value; }
-            }
-            public int Quantity
-            {
-                get { return quantity; }
-                set { quantity = value; }
-            }
+            List<Item> cart = (List<Item>)Session["cart"];
+            for(int i=0;i<cart.Count;i++)
+                if (cart[i].BK.BookID == id)
+                    return i;
+                return - 1;
         }
 
         protected void Button2_Click(object sender, EventArgs e)
