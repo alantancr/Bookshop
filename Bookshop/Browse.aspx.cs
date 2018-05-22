@@ -116,7 +116,10 @@ namespace Bookshop
 
         protected void Button2_Click(object sender, EventArgs e)
         {
-            Response.Redirect("Details.aspx");
+            Button lb = (Button)sender;
+            HiddenField hd = (HiddenField)lb.FindControl("HiddenField1");
+            string id = hd.Value;
+            Response.Redirect("Details.aspx?id=" +id);
         }
     }
 }
