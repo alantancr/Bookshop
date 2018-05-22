@@ -122,5 +122,21 @@ namespace Bookshop
             Session["isbn"] = isbn;
             Response.Redirect("Details.aspx?isbn=" + isbn);
         }
+
+        protected void GridView1_RowDataBound(object sender, GridViewRowEventArgs e)
+        {
+            if (e.Row.RowType == DataControlRowType.DataRow)
+            {
+                if (Convert.ToInt32(e.Row.Cells[6].Text) < 1)
+                {
+                    Button button = (Button)e.Row.FindControl("Button1");
+                    button.Enabled = false;
+                    button.BackColor = System.Drawing.Color.DarkGray;
+                    button.Text = "OUT OF STOCK";
+
+                }
+
+            }
+        }
     }
 }
