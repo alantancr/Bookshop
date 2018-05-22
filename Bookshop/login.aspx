@@ -7,6 +7,8 @@
  
     <div class="col-md-12" >
         <asp:Login ID="Login1" align="center" runat="server"></asp:Login>
+
+        <asp:Label ID="Label1" runat="server" Text="Label"></asp:Label>
     </div>
     </div>
         

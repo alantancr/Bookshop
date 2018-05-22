@@ -13,7 +13,18 @@ namespace Bookshop.Protect
         {
             if (User.IsInRole("user"))
             {
-                Response.Redirect("~/protect/user.aspx");
+                if (Request.QueryString["checkout"] == "true")
+                {
+                    Response.Redirect("~/protect/user.aspx");
+                }
+
+                else
+                {
+                    string s = (string)Session["ur"];
+                    Response.Redirect($"~/{s}");
+                }
+
+                
             }
             else if (User.IsInRole("admin"))
             {

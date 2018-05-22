@@ -11,12 +11,22 @@ namespace Bookshop
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-
+           
+                string url = (string) Session["ur"];
+                Label1.Text = url;
+            
         }
 
         protected void CreateUserWizard1_CreatedUser(object sender, EventArgs e)
         {
-            Response.Redirect("~/protect/user.aspx");
+            string s = "~/protect/default.aspx";
+
+            if (Request.QueryString["checkout"] == "true")
+            {
+                s += "?checkout=true";
+            }
+              else  
+            Response.Redirect($"~{s}");
         }
     }
 }

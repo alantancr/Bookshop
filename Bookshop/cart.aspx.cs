@@ -11,12 +11,15 @@ namespace Bookshop
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+            string url = HttpContext.Current.Request.Url.AbsolutePath;
+            Session["ur"] = url;
 
         }
 
         protected void Button1_Click(object sender, EventArgs e)
         {
-            Response.Redirect("~/protect/Default.aspx");
+            Response.Redirect("~/protect/Default.aspx?checkout=true");
+            
         }
     }
 }
