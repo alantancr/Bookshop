@@ -11,8 +11,7 @@ namespace Bookshop
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            string url = HttpContext.Current.Request.Url.AbsolutePath;
-            Session["url"] = url;
+           
 
         }
 
