@@ -12,7 +12,7 @@ namespace Bookshop.Protect
     {
         string title,isbn, author, synopsis;
         int bookid, categoryid, stock;
-        decimal price, discount;
+        decimal price;
         protected void Page_Load(object sender, EventArgs e)
         {
             //bookid = int.Parse(Request.QueryString["bookid"]);
@@ -28,18 +28,69 @@ namespace Bookshop.Protect
             //{
             //    BindGrid();
             //}
+            if (!IsPostBack)
+            {
+                BindGrid();
+
+            }
+            
+
         }
 
         private void BindGrid()
         {
-            BusinessLogic.UpdateBook(bookid, title,categoryid,isbn,author,stock,price,
-            synopsis,discount);
-            GridView1.DataBind();
+            using (BookshopModel ctx = new BookshopModel())
+            {
+                GridView1.DataSource = ctx.Books.ToList<Book>();
+                GridView1.DataBind();
+
+            }
         }
-        protected void Button1_Click(object sender, EventArgs e)
+
+        protected void GridView1_RowUpdating(object sender, GridViewUpdateEventArgs e)
+        {
+            string title, isbn, author, synopsis;
+            int bookid, categoryid, stock;
+            decimal finalprice;
+
+            GridViewRow row = GridView1.Rows[e.RowIndex];
+            bookid = Convert.ToInt32(GridView1.DataKeys[e.RowIndex].Values[0]);
+            title = (row.FindControl("TextBox1") as TextBox).Text;
+            categoryid = Convert.ToInt32((row.FindControl("TextBox2") as TextBox).Text);
+            isbn = (row.FindControl("TextBox3") as TextBox).Text;
+            author = (row.FindControl("TextBox4") as TextBox).Text;
+            stock = Convert.ToInt32((row.FindControl("TextBox5") as TextBox).Text);
+            finalprice = Convert.ToDecimal((row.FindControl("TextBox6") as TextBox).Text);
+            synopsis = (row.FindControl("TextBox7") as TextBox).Text;
+            BusinessLogic.UpdateBook(bookid, title, categoryid, isbn, author, stock, finalprice, synopsis);
+            GridView1.EditIndex = -1;
+            BindGrid();
+
+        }
+
+        protected void GridView1_SelectedIndexChanged(object sender, EventArgs e)
         {
 
         }
+
+        protected void TextBox8_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        protected void Button1_Click(object sender, EventArgs e)
+        {
+            int discount = int.Parse(TextBox8.Text);
+            BusinessLogic.discount(discount);
+            Response.Redirect(HttpContext.Current.Request.Url.AbsoluteUri);
+        }
+
+        protected void GridView1_RowCancelingEdit(object sender, GridViewCancelEditEventArgs e)
+        {
+            GridView1.EditIndex = -1;
+            BindGrid();
+        }
+
 
         protected void OnRowEditing(object sender, GridViewEditEventArgs e)
         {
@@ -59,18 +110,18 @@ namespace Bookshop.Protect
 
         protected void GridView1_RowEditing(object sender, GridViewEditEventArgs e)
         {
-
+            GridView1.EditIndex = e.NewEditIndex;
+            BindGrid();
         }
 
         protected void GridView1_RowDeleting(object sender, GridViewDeleteEventArgs e)
         {
+            int bookId = Convert.ToInt32(GridView1.DataKeys[e.RowIndex].Values[0]);
+            BusinessLogic.DeleteBook(bookId);
+            BindGrid();
 
         }
 
-        protected void GridView1_SelectedIndexChanged1(object sender, EventArgs e)
-        {
-
-        }
 
        
     }
