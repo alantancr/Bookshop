@@ -47,6 +47,7 @@
                     <asp:TemplateField ShowHeader="False">
                         <ItemTemplate>
                             <asp:Button ID="Button2" runat="server" CausesValidation="false" CommandName="" Text="View Details" OnClick="Button2_Click" CssClass="btn btn-view-details" />
+                        <asp:HiddenField ID="HiddenField1" runat="server" Value='<%# Eval("BookID") %>' />
                         </ItemTemplate>
                     </asp:TemplateField>
                     
