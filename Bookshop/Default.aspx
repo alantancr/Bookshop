@@ -12,13 +12,13 @@
 
     <!-- Search Area-->
     <div class="middleAlign">
-    <asp:TextBox ID="TextBox1" runat="server" placeholder="Search for a book by title!"></asp:TextBox>
+    <asp:TextBox ID="tbSearchMP" runat="server" placeholder="Search for a book by title!"></asp:TextBox>
     </div>
 
 
      <!-- Button -->
     <div class= "buttons">  
-      <asp:Button ID="Button1" runat="server" CssClass="btn" Text="Search" />
+      <asp:Button ID="Button1" runat="server" CssClass="btn" Text="Search" OnClick="Button1_Click" />
     </div>
 
 </asp:Content>

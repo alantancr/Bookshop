@@ -26,7 +26,7 @@
     <h3>Search Results</h3>
     <div style="margin-left: 40px">
 
-            <asp:GridView ID="GridView1" GridLines="None" runat="server" AutoGenerateColumns="False" Width="676px" CssClass="table table-dark">
+            <asp:GridView ID="GridView1" GridLines="None" runat="server" AutoGenerateColumns="False" Width="676px" CssClass="table table-dark" OnRowDataBound="GridView1_RowDataBound">
                 <Columns>
                     <asp:TemplateField>
                         <ItemTemplate>
@@ -38,6 +38,7 @@
                     <asp:BoundField DataField="Category.Name" HeaderText="Category" />
                     <asp:BoundField DataField="ISBN" HeaderText="ISBN" />
                     <asp:BoundField DataField="Price" HeaderText="Price" Dataformatstring="{0:c2}"/>
+                    <asp:BoundField DataField="Stock" HeaderText="Qty" />
                     <asp:TemplateField ShowHeader="False">
                         <ItemTemplate>
                             <asp:Button ID="Button1" runat="server" CausesValidation="false" CommandName="" OnClick="Button1_Click1" Text="Add to Cart" CssClass="btn btn-add-to-cart"/>

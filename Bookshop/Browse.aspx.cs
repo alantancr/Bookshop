@@ -15,8 +15,18 @@ namespace Bookshop
             {
                 using (BookshopModel b = new BookshopModel())
                 {
-                    GridView1.DataSource = b.Books.ToList<Book>();
-                    GridView1.DataBind();
+                    if (Session["query"] != null)
+                    {
+                        TextBox1.Text = Session["query"].ToString();
+                        SearchByTitle();
+                        Session["query"] = null;
+                    }
+                    else
+                    {
+                        GridView1.DataSource = b.Books.ToList<Book>();
+                        GridView1.DataBind();
+                    }
+                    
                     var q = b.Categories.Select(x => x.Name).ToList();
                     foreach (Category x in b.Categories)
                     {
@@ -54,7 +64,7 @@ namespace Bookshop
             }
         }
 
-        protected void Button1_Click(object sender, EventArgs e)
+        protected void SearchByTitle()
         {
             using (BookshopModel ctx = new BookshopModel())
             {
@@ -62,6 +72,11 @@ namespace Bookshop
                 GridView1.DataSource = q.ToList<Book>();
                 GridView1.DataBind();
             }
+        }
+
+        protected void Button1_Click(object sender, EventArgs e)
+        {
+            SearchByTitle();
         }
 
         protected void Button1_Click1(object sender, EventArgs e)
@@ -121,6 +136,22 @@ namespace Bookshop
             string isbn = hd.Value;
             Session["isbn"] = isbn;
             Response.Redirect("Details.aspx?isbn=" + isbn);
+        }
+
+        protected void GridView1_RowDataBound(object sender, GridViewRowEventArgs e)
+        {
+            if (e.Row.RowType == DataControlRowType.DataRow)
+            {
+                if (Convert.ToInt32(e.Row.Cells[6].Text) < 1)
+                {
+                    Button button = (Button)e.Row.FindControl("Button1");
+                    button.Enabled = false;
+                    button.BackColor = System.Drawing.Color.DarkGray;
+                    button.Text = "OUT OF STOCK";
+
+                }
+
+            }
         }
     }
 }
