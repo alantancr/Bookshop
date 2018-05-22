@@ -142,6 +142,7 @@
     <Content Include="Reference\Images\9781911015222.jpg" />
     <Content Include="Reference\Images\books.jpg" />
     <Content Include="Reference\Images\placeholder.png" />
+    <Content Include="Web Config Backup.txt" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
