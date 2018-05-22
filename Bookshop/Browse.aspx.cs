@@ -13,7 +13,7 @@ namespace Bookshop
         protected void Page_Load(object sender, EventArgs e)
         {
             string url = HttpContext.Current.Request.Url.AbsolutePath;
-            Session["ur"] = url;
+            Session["url"] = url;
 
             GridView1.DataSource = BusinessLogic.ListAllBooks();
             GridView1.DataBind();

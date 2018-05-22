@@ -20,8 +20,8 @@ namespace Bookshop.Protect
 
                 else
                 {
-                    string s = (string)Session["ur"];
-                    Response.Redirect($"~/{s}");
+                    string s = "~/cart.aspx";
+                    Response.Redirect(url: $"~/{s}");
                 }
 
                 
