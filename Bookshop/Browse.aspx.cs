@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using System.Transactions;
 
 namespace Bookshop
 {
@@ -88,20 +89,40 @@ namespace Bookshop
             HiddenField hd = (HiddenField)lb.FindControl("HiddenFieldID");
             int id = Convert.ToInt32(hd.Value);
             BookshopModel b = new BookshopModel();
-            if (Session["cart"] == null)
-            {
-                List<Item> cart = new List<Item>();
-                cart.Add(new Item(b.Books.Where(x => x.BookID == id).First(), 1));
-                Session["cart"] = cart;
 
-            }
-            else
+            using (TransactionScope ts = new TransactionScope())
             {
-                List<Item> cart = (List<Item>)Session["cart"];
-                cart.Add(new Item(b.Books.Where(x => x.BookID == id).First(), 1));
-                Session["cart"] = cart;
-            }
+                
+                if (Session["cart"] == null)
+                {
+                    List<Item> cart = new List<Item>();
+                    cart.Add(new Item(b.Books.Where(x => x.BookID == id).First(), 1));
+                    Session["cart"] = cart;
 
+                }
+                else
+                {
+                    List<Item> cart = (List<Item>)Session["cart"];
+                    cart.Add(new Item(b.Books.Where(x => x.BookID == id).First(), 1));
+                    Session["cart"] = cart;
+                }
+                Transaction.Current.TransactionCompleted += Current_TransactionCompleted;
+                ts.Complete();
+            }
+            
+
+        }
+
+        private void Current_TransactionCompleted(object sender, TransactionEventArgs e)
+        {
+            if (e.Transaction.TransactionInformation.Status == TransactionStatus.Committed)
+            {
+                lbFootnote.Text = "Item added to cart...";
+            }
+            else if (e.Transaction.TransactionInformation.Status == TransactionStatus.Aborted)
+            {
+                lbFootnote.Text = "Failed...";
+            }
         }
 
         public class Item

@@ -59,4 +59,5 @@
         
         </div>
     </div>
+    <asp:Label ID="lbFootnote" runat="server" Text="Label"></asp:Label>
 </asp:Content>
