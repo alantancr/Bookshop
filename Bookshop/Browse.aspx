@@ -1,6 +1,10 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Bookstore.Master" AutoEventWireup="true" CodeBehind="Browse.aspx.cs" Inherits="Bookshop.Browse" %>
+<!-- Browse Head Content-->
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
+    <link rel="stylesheet" href="Reference/css/Browse.css" />
 </asp:Content>
+
+<!-- Browse Body Content-->
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     &nbsp;&nbsp;&nbsp;
     <asp:TextBox ID="TextBox1" runat="server"></asp:TextBox>
@@ -24,7 +28,7 @@
                 <asp:BoundField DataField="Price" HeaderText="Price" />
                 <asp:TemplateField>
                     <ItemTemplate>
-                        <image src="Resources/images/<%# Eval("ISBN") %>.jpg" width="90" height="120"></image>
+                        <image src="Reference/Images/<%# Eval("ISBN") %>.jpg" width="90" height="120"></image>
                     </ItemTemplate>
                 </asp:TemplateField>
                 <asp:CommandField ButtonType="Button" EditText="Add" ShowEditButton="True" />
