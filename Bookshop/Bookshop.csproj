@@ -81,6 +81,7 @@
     <Content Include="cart.aspx" />
     <Content Include="createuser.aspx" />
     <Content Include="Default.aspx" />
+    <Content Include="Details.aspx" />
     <Content Include="Global.asax" />
     <Content Include="login.aspx" />
     <Content Include="Protect\admin.aspx" />
@@ -88,6 +89,7 @@
     <Content Include="Protect\admin_update.aspx" />
     <Content Include="Protect\Default.aspx" />
     <Content Include="Protect\user.aspx" />
+    <Content Include="Reference\css\Browse.css" />
     <Content Include="Reference\css\Default.css" />
     <Content Include="Reference\css\Details.css" />
     <Content Include="Reference\Images\9780060555665.jpg" />
@@ -137,6 +139,8 @@
     <Content Include="Reference\Images\9781616205676.jpg" />
     <Content Include="Reference\Images\9781619634480.jpg" />
     <Content Include="Reference\Images\9781911015222.jpg" />
+    <Content Include="Reference\Images\books.jpg" />
+    <Content Include="Reference\Images\placeholder.png" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
@@ -178,6 +182,13 @@
     </Compile>
     <Compile Include="Default.aspx.designer.cs">
       <DependentUpon>Default.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Details.aspx.cs">
+      <DependentUpon>Details.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Details.aspx.designer.cs">
+      <DependentUpon>Details.aspx</DependentUpon>
     </Compile>
     <Compile Include="Discount.cs" />
     <Compile Include="Global.asax.cs">
