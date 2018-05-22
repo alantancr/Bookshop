@@ -36,6 +36,7 @@ namespace Bookshop.Protect
 
 		public void Button7_Click(object sender, EventArgs e)
 		{
+            /*
 			if (TextBox9.Text is null)
 			{
 				
@@ -52,6 +53,7 @@ namespace Bookshop.Protect
 			{
 				Response.Write(exp.ToString());
 			}
+            */
 
 		}
 

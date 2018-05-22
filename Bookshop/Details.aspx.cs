@@ -35,6 +35,7 @@ namespace Bookshop
                     title.InnerText = b.Title;
                     author.InnerText = b.Author;
                     synopsis.InnerText = b.Synopsis;
+                    price.InnerText = "$" + b.Price;
 
                     details_author.InnerText = b.Author;
                     details_name.InnerText = b.Title;
