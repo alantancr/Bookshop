@@ -26,26 +26,30 @@
     <h3>Search Results</h3>
     <div style="margin-left: 40px">
 
-            <asp:GridView ID="GridView1" GridLines="None" runat="server" AutoGenerateColumns="False" Width="676px" OnRowEditing="GridView1_RowEditing" CssClass="table table-dark" OnSelectedIndexChanged="GridView1_SelectedIndexChanged">
+            <asp:GridView ID="GridView1" GridLines="None" runat="server" AutoGenerateColumns="False" Width="676px" CssClass="table table-dark">
                 <Columns>
-                    <asp:BoundField DataField="Title" HeaderText="Title" />
-                    <asp:BoundField DataField="Author" HeaderText="Author" />        
-                    <asp:BoundField DataField="Category.Name" HeaderText="Category" />
-                    <asp:BoundField DataField="ISBN" HeaderText="ISBN" />
-                    <asp:BoundField DataField="Price" HeaderText="Price" />
                     <asp:TemplateField>
                         <ItemTemplate>
                             <image src="Reference/Images/<%# Eval("ISBN") %>.jpg" width="90" height="120"></image>
                         </ItemTemplate>
                     </asp:TemplateField>
-                    <asp:CommandField ButtonType="Button" EditText="Add To Cart" ShowEditButton="True" ControlStyle-CssClass="btn btn-add-to-cart" />
+                    <asp:BoundField DataField="Title" HeaderText="Title" />
+                    <asp:BoundField DataField="Author" HeaderText="Author" />        
+                    <asp:BoundField DataField="Category.Name" HeaderText="Category" />
+                    <asp:BoundField DataField="ISBN" HeaderText="ISBN" />
+                    <asp:BoundField DataField="Price" HeaderText="Price" />
                     <asp:TemplateField ShowHeader="False">
                         <ItemTemplate>
-                            <asp:Button ID="Button1" runat="server" CausesValidation="false" CommandName="SendMail"
-                            Text="SendMail" CommandArgument='<%# Eval("id") %>' />
-                            <asp:Button ID="ViewDetailsButton" runat="server" Text="View Details"  CommandName="ViewDetails" CssClass="btn btn-view-details" CommandArgument="<%Eval(); %>""/>
+                            <asp:Button ID="Button1" runat="server" CausesValidation="false" CommandName="" OnClick="Button1_Click1" Text="Add to Cart" />
+                            <asp:HiddenField ID="HiddenFieldID" runat="server" Value='<%# Eval("BookID") %>' />
                         </ItemTemplate>
                     </asp:TemplateField>
+                    <asp:TemplateField ShowHeader="False">
+                        <ItemTemplate>
+                            <asp:Button ID="Button2" runat="server" CausesValidation="false" CommandName="" Text="View Details" OnClick="Button2_Click" />
+                        </ItemTemplate>
+                    </asp:TemplateField>
+                    
 
 
                 </Columns>
