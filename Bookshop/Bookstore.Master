@@ -1,0 +1,62 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="Bookstore.master.cs" Inherits="Bookshop.Bookstore" %>
+
+<!DOCTYPE html>
+
+<html>
+<head runat="server">
+    <title></title>
+
+    <!-- Bootstrap header for all pages -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+    <asp:ContentPlaceHolder ID="head" runat="server">
+    </asp:ContentPlaceHolder>
+</head>
+<body>
+<form id="form1" runat="server">
+
+    <nav class="navbar navbar-inverse">
+        <div class="container-fluid">
+             
+            <!--Navbar Header-->
+            <div class="navbar-header">
+                <a class="navbar-brand" href="default.aspx">Famous Bookstore</a>
+            </div>
+
+            <!--Navbar Navigation list-->
+            <ul class="nav navbar-nav">
+                <li><a href="default.aspx">Home</a></li>
+                <li><a href="Browse.aspx">Browse</a></li>
+                <li><a href="#">Page 2</a></li>
+                <li><a href="#">Page 3</a></li>
+            </ul>
+    
+            <!-- Navbar right-->
+            
+            <ul class="nav navbar-nav navbar-right">
+                <li><a href="createuser.aspx"><span class="glyphicon glyphicon-user" style="width: 4px"></span> Sign Up</a></li>
+                <li><a href="login.aspx"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+            </ul>
+             
+           
+
+        </div>
+
+
+
+    </nav>
+
+    <!--Content Body-->
+    <div>
+        <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
+        </asp:ContentPlaceHolder>
+    </div>
+    <!-- End content body-->
+
+
+                      
+</form>
+</body>
+</html>
