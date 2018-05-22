@@ -1,81 +1,21 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Bookstore.Master" AutoEventWireup="true" CodeBehind="admin_update.aspx.cs" Inherits="Bookshop.Protect.admin_update" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
+    <link rel="stylesheet" href="../Reference/css/Admin_update.css" />
+
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
+        
+    <div class="container">
+        <h1>Product Update and Discounts</h1>
     
-    <style>
-        .one{
-            height: 100px; 
-            width: 1000px;
-             font-size:40px;
-             margin-left:200px;
-             margin-bottom:10px;
-        }
-         .two{
-            height: 500px;
-            width: 1000px;
-            margin-left:200px;
-            text-align:center;
-        }
-        .five{
-            float:left;
-            height: 500px;
-            width: 600px;
-            margin-left:200px;
-        }
-        .six{
-            float:left;
-            height: 400px;
-            width: 400px;
-        }
-        .four{
-            height: 40px;
-            width: 100px;
-            margin-top: 20px;
-            font-size: 20px;
-        }
-      
-        #GridView1{
-            Height: 500px;
-            Width: 1000px;
-            text-align:center;
-            font-size:14px;
-        }
 
-        #GridView2{
-            Height: 400px;
-            Width: 200px ;
-            text-align:center;
-            font-size:14px;
-        }
-        #Label3{
-            font-size:40px;
-        }
-
-        
-        
-        
-
-    </style>
-
-
-        <div class="one">
-            <asp:Label ID="Label1" runat="server" Text="Edit BOOK Details">
-            </asp:Label>
-            <br />
-            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-            <asp:Label ID="Label8" runat="server" Text="Discount" Font-Size="25px" ></asp:Label>
-&nbsp;<asp:TextBox ID="TextBox8" runat="server" Height="38px" Width="144px" Font-Size="25px" OnTextChanged="TextBox8_TextChanged"  ></asp:TextBox>
-            &nbsp;<asp:Button ID="Button1" runat="server" Height="25px" Text="Confirm" Font-Size="20px" Width="120px" OnClick="Button1_Click"  />
-        </div>
-    
-        <div class="two">
             <asp:GridView ID="GridView1" runat="server" AllowPaging="True" 
                 OnRowDeleting="GridView1_RowDeleting" OnRowEditing="GridView1_RowEditing" AutoGenerateColumns="False" OnRowCancelingEdit="GridView1_RowCancelingEdit" OnRowUpdating="GridView1_RowUpdating"
-                DataKeyNames="BookID" Font-Names="Book Antiqua" HorizontalAlign="Right" >
-                <AlternatingRowStyle BorderStyle="Double" BorderWidth="2px" Font-Names="Book Antiqua" BackColor="Silver" HorizontalAlign="Center" />
+                DataKeyNames="BookID" CssClass="table table-responsive">
                 <Columns>
-                    <asp:BoundField DataField="BookID" HeaderText="Book ID" InsertVisible="False" ReadOnly="True" SortExpression="BookID" />
+                    <asp:BoundField DataField="BookID" HeaderText="Book ID" InsertVisible="False" ReadOnly="True" SortExpression="BookID" >
+                    <ItemStyle HorizontalAlign="Left" />
+                    </asp:BoundField>
                     <asp:TemplateField HeaderText="Title" SortExpression="Title">
                         <EditItemTemplate>
                             <asp:TextBox ID="TextBox1" runat="server" Text='<%# Bind("Title") %>'></asp:TextBox>
@@ -116,7 +56,7 @@
                             <asp:Label ID="Label5" runat="server" Text='<%# Bind("Stock") %>'></asp:Label>
                         </ItemTemplate>
                     </asp:TemplateField>
-                    <asp:TemplateField HeaderText="finalprice" SortExpression="finalprice">
+                    <asp:TemplateField HeaderText="Final Price" SortExpression="finalprice">
                         <EditItemTemplate>
                             <asp:TextBox ID="TextBox6" runat="server" Text='<%# Bind("finalprice") %>'></asp:TextBox>
                         </EditItemTemplate>
@@ -146,13 +86,9 @@
 
             </asp:GridView>
         
-        </div>
-        
-        <div class="five">
-        
-        </div>
-        
-        <div class="six">
-        </div>
-                
+            <asp:Label ID="Label8" runat="server" Text="Set Universal Discount: "></asp:Label>
+            <asp:TextBox ID="TextBox8" runat="server" OnTextChanged="TextBox8_TextChanged"  ></asp:TextBox>
+            <asp:Button ID="Button1" runat="server" Text="Confirm" OnClick="Button1_Click"  />
+
+     </div>           
 </asp:Content>
