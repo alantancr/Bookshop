@@ -39,13 +39,6 @@
                         </ItemTemplate>
                     </asp:TemplateField>
                     <asp:CommandField ButtonType="Button" EditText="Add To Cart" ShowEditButton="True" ControlStyle-CssClass="btn btn-add-to-cart" />
-                    <asp:TemplateField ShowHeader="False">
-                        <ItemTemplate>
-                            <asp:Button ID="Button1" runat="server" CausesValidation="false" CommandName="SendMail"
-                            Text="SendMail" CommandArgument='<%# Eval("id") %>' />
-                            <asp:Button ID="ViewDetailsButton" runat="server" Text="View Details"  CommandName="ViewDetails" CssClass="btn btn-view-details" CommandArgument="<%Eval(); %>""/>
-                        </ItemTemplate>
-                    </asp:TemplateField>
 
 
                 </Columns>
