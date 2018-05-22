@@ -41,7 +41,7 @@
                     <asp:BoundField DataField="Stock" HeaderText="Qty" />
                     <asp:TemplateField ShowHeader="False">
                         <ItemTemplate>
-                            <asp:Button ID="Button1" runat="server" CommandName="" OnClick="Button1_Click1" Text="Add to Cart" CssClass="btn btn-add-to-cart"/>
+                            <asp:Button ID="Button1" runat="server" CommandName="" OnClick="Button1_Click1" Text="Add to Cart" CssClass="btn btn-add-to-cart" />
                             <asp:HiddenField ID="HiddenFieldID" runat="server" Value='<%# Eval("BookID") %>' />
                         </ItemTemplate>
                     </asp:TemplateField>

@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using System.Transactions;
 
 namespace Bookshop
 {
@@ -88,26 +89,52 @@ namespace Bookshop
             HiddenField hd = (HiddenField)lb.FindControl("HiddenFieldID");
             int id = Convert.ToInt32(hd.Value);
             BookshopModel b = new BookshopModel();
-            if (Session["cart"] == null)
+            using(TransactionScope ts = new TransactionScope())
             {
-                List<Item> cart = new List<Item>();
-                cart.Add(new Item(b.Books.Where(x => x.BookID == id).First(), 1));
-                Session["cart"] = cart;
-            }
-            else
-            {
-                List<Item> cart = (List<Item>)Session["cart"];
-                int index = isExisting(id);
-                if (index == -1)
+                if (Session["cart"] == null)
                 {
+                    List<Item> cart = new List<Item>();
                     cart.Add(new Item(b.Books.Where(x => x.BookID == id).First(), 1));
+                    Session["cart"] = cart;
                 }
                 else
                 {
-                    cart[index].Quantity++;
-                    Session["cart"] = cart;
+                    List<Item> cart = (List<Item>)Session["cart"];
+                    int index = isExisting(id);
+                    if (index == -1)
+                    {
+                        cart.Add(new Item(b.Books.Where(x => x.BookID == id).First(), 1));
+                    }
+                    else
+                    {
+                        cart[index].Quantity++;
+                        Session["cart"] = cart;
+                    }
+                    Transaction.Current.TransactionCompleted += Current_TransactionCompleted;
+                    ts.Complete();
                 }
             }
+            
+        }
+
+        private void Current_TransactionCompleted(object sender, TransactionEventArgs e)
+        {
+            if (e.Transaction.TransactionInformation.Status == TransactionStatus.Committed)
+            {
+                MsgBox("Item added to cart...");
+            }
+            else if (e.Transaction.TransactionInformation.Status == TransactionStatus.Aborted)
+            {
+                MsgBox("ERROR: Failed adding item to cart..");
+            }
+        }
+
+        private void MsgBox(string sMessage)
+        {
+            string msg = "<script language=\"javascript\">";
+            msg += "alert('" + sMessage + "');";
+            msg += "</script>";
+            Response.Write(msg);
         }
 
         private int isExisting(int id)
