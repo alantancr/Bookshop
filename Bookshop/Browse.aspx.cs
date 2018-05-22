@@ -24,6 +24,10 @@ namespace Bookshop
                     }
                 }
             }
+
+            // Fix for ASPNet Grid views, to work with Bootstrap Tables
+            GridView1.UseAccessibleHeader = true;
+            GridView1.HeaderRow.TableSection = TableRowSection.TableHeader;
         }
 
         protected void DropDownList1_SelectedIndexChanged(object sender, EventArgs e)
@@ -61,6 +65,11 @@ namespace Bookshop
         }
 
         protected void GridView1_RowEditing(object sender, GridViewEditEventArgs e)
+        {
+
+        }
+
+        protected void GridView1_SelectedIndexChanged(object sender, EventArgs e)
         {
 
         }
