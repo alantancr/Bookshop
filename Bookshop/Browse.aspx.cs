@@ -15,8 +15,18 @@ namespace Bookshop
             {
                 using (BookshopModel b = new BookshopModel())
                 {
-                    GridView1.DataSource = b.Books.ToList<Book>();
-                    GridView1.DataBind();
+                    if (Session["query"] != null)
+                    {
+                        TextBox1.Text = Session["query"].ToString();
+                        SearchByTitle();
+                        Session["query"] = null;
+                    }
+                    else
+                    {
+                        GridView1.DataSource = b.Books.ToList<Book>();
+                        GridView1.DataBind();
+                    }
+                    
                     var q = b.Categories.Select(x => x.Name).ToList();
                     foreach (Category x in b.Categories)
                     {
@@ -54,7 +64,7 @@ namespace Bookshop
             }
         }
 
-        protected void Button1_Click(object sender, EventArgs e)
+        protected void SearchByTitle()
         {
             using (BookshopModel ctx = new BookshopModel())
             {
@@ -62,6 +72,11 @@ namespace Bookshop
                 GridView1.DataSource = q.ToList<Book>();
                 GridView1.DataBind();
             }
+        }
+
+        protected void Button1_Click(object sender, EventArgs e)
+        {
+            SearchByTitle();
         }
 
         protected void Button1_Click1(object sender, EventArgs e)

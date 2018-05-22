@@ -13,5 +13,13 @@ namespace Bookshop
         {
 
         }
+
+        protected void Button1_Click(object sender, EventArgs e)
+        {
+            Button lb = (Button)sender;
+            string query = tbSearchMP.Text;
+            Session["query"] = query;
+            Response.Redirect("Browse.aspx");
+        }
     }
 }
