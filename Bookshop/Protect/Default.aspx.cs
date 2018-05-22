@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using System.Security.Principal;
 
 namespace Bookshop.Protect
 {
@@ -11,6 +12,9 @@ namespace Bookshop.Protect
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+            IIdentity id = User.Identity;
+            debugLabel.InnerText = String.Format("IsAuthenticated:{0},Name:{1},Type:{2}", id.IsAuthenticated, id.Name, id.AuthenticationType);
+
             if (User.IsInRole("user"))
             {
               

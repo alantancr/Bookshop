@@ -4,7 +4,6 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
-using System.Transactions;
 
 namespace Bookshop
 {
@@ -89,68 +88,35 @@ namespace Bookshop
             HiddenField hd = (HiddenField)lb.FindControl("HiddenFieldID");
             int id = Convert.ToInt32(hd.Value);
             BookshopModel b = new BookshopModel();
-
-            using (TransactionScope ts = new TransactionScope())
+            if (Session["cart"] == null)
             {
-                
-                if (Session["cart"] == null)
+                List<Item> cart = new List<Item>();
+                cart.Add(new Item(b.Books.Where(x => x.BookID == id).First(), 1));
+                Session["cart"] = cart;
+            }
+            else
+            {
+                List<Item> cart = (List<Item>)Session["cart"];
+                int index = isExisting(id);
+                if (index == -1)
                 {
-                    List<Item> cart = new List<Item>();
                     cart.Add(new Item(b.Books.Where(x => x.BookID == id).First(), 1));
-                    Session["cart"] = cart;
-
                 }
                 else
                 {
-                    List<Item> cart = (List<Item>)Session["cart"];
-                    cart.Add(new Item(b.Books.Where(x => x.BookID == id).First(), 1));
+                    cart[index].Quantity++;
                     Session["cart"] = cart;
                 }
-                Transaction.Current.TransactionCompleted += Current_TransactionCompleted;
-                ts.Complete();
-            }
-            
-
-        }
-
-        private void Current_TransactionCompleted(object sender, TransactionEventArgs e)
-        {
-            if (e.Transaction.TransactionInformation.Status == TransactionStatus.Committed)
-            {
-                lbFootnote.Text = "Item added to cart...";
-            }
-            else if (e.Transaction.TransactionInformation.Status == TransactionStatus.Aborted)
-            {
-                lbFootnote.Text = "Failed...";
             }
         }
 
-        public class Item
+        private int isExisting(int id)
         {
-            private Book book = new Book();
-            private int quantity;
-
-            public Item()
-            {
-
-            }
-
-            public Item(Book book, int quantity)
-            {
-                this.book = book;
-                this.quantity = quantity;
-            }
-
-            public Book Book
-            {
-                get { return book; }
-                set { book = value; }
-            }
-            public int Quantity
-            {
-                get { return quantity; }
-                set { quantity = value; }
-            }
+            List<Item> cart = (List<Item>)Session["cart"];
+            for(int i=0;i<cart.Count;i++)
+                if (cart[i].BK.BookID == id)
+                    return i;
+                return - 1;
         }
 
         protected void Button2_Click(object sender, EventArgs e)
