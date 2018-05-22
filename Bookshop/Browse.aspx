@@ -11,7 +11,7 @@
         <h1>Browse</h1>
     </div>
 
-    <div class="container">
+    <div class="container container-search">
         <h3>Search For a book:</h3>
         <asp:TextBox ID="TextBox1" runat="server"></asp:TextBox>
 
@@ -22,7 +22,7 @@
         <asp:Button ID="Button1" runat="server" Text="Search" OnClick="Button1_Click" CssClass="btn btn-search" />
     </div>
 
-    <div class="container">
+    <div class="container container-search-results">
     <h3>Search Results</h3>
     <div style="margin-left: 40px">
 
@@ -40,13 +40,13 @@
                     <asp:BoundField DataField="Price" HeaderText="Price" />
                     <asp:TemplateField ShowHeader="False">
                         <ItemTemplate>
-                            <asp:Button ID="Button1" runat="server" CausesValidation="false" CommandName="" OnClick="Button1_Click1" Text="Add to Cart" />
+                            <asp:Button ID="Button1" runat="server" CausesValidation="false" CommandName="" OnClick="Button1_Click1" Text="Add to Cart" CssClass="btn btn-add-to-cart"/>
                             <asp:HiddenField ID="HiddenFieldID" runat="server" Value='<%# Eval("BookID") %>' />
                         </ItemTemplate>
                     </asp:TemplateField>
                     <asp:TemplateField ShowHeader="False">
                         <ItemTemplate>
-                            <asp:Button ID="Button2" runat="server" CausesValidation="false" CommandName="" Text="View Details" OnClick="Button2_Click" />
+                            <asp:Button ID="Button2" runat="server" CausesValidation="false" CommandName="" Text="View Details" OnClick="Button2_Click" CssClass="btn btn-view-details" />
                         </ItemTemplate>
                     </asp:TemplateField>
                     
