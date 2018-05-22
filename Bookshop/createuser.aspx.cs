@@ -16,6 +16,16 @@ namespace Bookshop
 
         protected void ContinueButton_Click(object sender, EventArgs e)
         {
+            
+        }
+
+        protected void CreateUserWizard1_CreatedUser(object sender, EventArgs e)
+        {
+
+        }
+
+        protected void ContinueButton_Click1(object sender, EventArgs e)
+        {
             Response.Redirect("~/login.aspx");
         }
     }
