@@ -12,7 +12,20 @@ namespace Bookshop
         protected void Page_Load(object sender, EventArgs e)
         {
             // Grab the attributes from the URL
-           // String id = Request.QueryString();
+            string param_id = Request.QueryString["id"];
+            if(param_id != null)
+            {
+                /*
+                int id = int.Parse()
+
+
+                // Populate the page with information about the book
+                using (BookshopModel entities = new BookshopModel())
+                { return entities.Books.Where(p => p.BookID.Contains(param_id)).ToList<Book>(); }
+                */
+
+            }
+
 
 
             // Transform the page to match page details.

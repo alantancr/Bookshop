@@ -34,7 +34,7 @@
             <!-- Navbar right-->
             
             <ul class="nav navbar-nav navbar-right">
-                <li><a href="login.aspx"><span class="glyphicon glyphicon-shopping-cart"></span> View Cart</a></li>
+                <li><a href="cart.aspx"><span class="glyphicon glyphicon-shopping-cart"></span> View Cart</a></li>
                 <li><a href="createuser.aspx"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
                 <li><a href="login.aspx"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
             </ul>
