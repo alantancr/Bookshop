@@ -1,3 +1,23 @@
 ﻿body {
 }
 
+.btn-search {
+    background-color: #3d7cb9;
+    font-family: Arial;
+    color: white;
+    font-weight: bold;
+}
+
+.btn-add-to-cart{
+    background-color: #148616;
+    font-family: Arial;
+    color: white;
+    font-weight: bold;
+}
+
+.btn-view-details {
+    background-color: #f5a323;
+    font-family: Arial;
+    color: white;
+    font-weight: bold;
+}
