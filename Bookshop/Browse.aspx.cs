@@ -118,8 +118,9 @@ namespace Bookshop
         {
             Button lb = (Button)sender;
             HiddenField hd = (HiddenField)lb.FindControl("HiddenField1");
-            string id = hd.Value;
-            Response.Redirect("Details.aspx?id=" +id);
+            string isbn = hd.Value;
+            Session["isbn"] = isbn;
+            Response.Redirect("Details.aspx?isbn=" + isbn);
         }
     }
 }

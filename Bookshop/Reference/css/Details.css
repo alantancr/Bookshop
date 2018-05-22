@@ -1,12 +1,9 @@
-﻿body {
-    background-color: white;
-}
-
-#book-image {
+﻿
+.book-image {
     height: 100%;
     width: 80%;
-    display: block;
-    margin: auto auto;
+    display: block; 
+    margin: 0, auto;
 }
 
 #title {
@@ -24,11 +21,35 @@
     margin-bottom: 2.5vh;
 }
 
-/*#price {
-}*/
+#price{
+    margin-bottom: 2.5vh;
+}
 
-/*.container-fluid {
+.btn-add-to-cart{
+    margin-top: 2.5vh;
+}
+
+.details-info{
+    font-weight: bold;
+}
+
+.details-data{
+
+}
+
+.container{
+    background-color: white;
+
     border-bottom: 5px;
-    border-color: black;*/
-/*}body {
-}*/
+    border-color: black;
+}
+
+.container-summary{
+    padding-bottom: 2.5vh;
+    padding-top: 2.5vh;
+}
+
+.container-product-details{
+    margin-top: 5vh;
+    padding-bottom: 2.5vh;
+}

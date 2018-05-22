@@ -37,7 +37,7 @@
                     <asp:BoundField DataField="Author" HeaderText="Author" />        
                     <asp:BoundField DataField="Category.Name" HeaderText="Category" />
                     <asp:BoundField DataField="ISBN" HeaderText="ISBN" />
-                    <asp:BoundField DataField="Price" HeaderText="Price" />
+                    <asp:BoundField DataField="Price" HeaderText="Price" Dataformatstring="{0:c2}"/>
                     <asp:TemplateField ShowHeader="False">
                         <ItemTemplate>
                             <asp:Button ID="Button1" runat="server" CausesValidation="false" CommandName="" OnClick="Button1_Click1" Text="Add to Cart" CssClass="btn btn-add-to-cart"/>
@@ -47,7 +47,7 @@
                     <asp:TemplateField ShowHeader="False">
                         <ItemTemplate>
                             <asp:Button ID="Button2" runat="server" CausesValidation="false" CommandName="" Text="View Details" OnClick="Button2_Click" CssClass="btn btn-view-details" />
-                        <asp:HiddenField ID="HiddenField1" runat="server" Value='<%# Eval("BookID") %>' />
+                        <asp:HiddenField ID="HiddenField1" runat="server" Value='<%# Eval("ISBN") %>' />
                         </ItemTemplate>
                     </asp:TemplateField>
                     

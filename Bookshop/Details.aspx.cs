@@ -11,24 +11,41 @@ namespace Bookshop
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            // Grab the attributes from the URL
-            string param_id = Request.QueryString["id"];
-            if(param_id != null)
-            {
-                /*
-                int id = int.Parse()
+            UpdatePage();
 
+        }
+
+        // Updates page given a book
+        protected void UpdatePage() {
+            // Grab the attributes from the URL
+            string param_isbn = Request.QueryString["isbn"];
+            if (param_isbn != null)
+            {
+
+                string isbn = param_isbn;
 
                 // Populate the page with information about the book
                 using (BookshopModel entities = new BookshopModel())
-                { return entities.Books.Where(p => p.BookID.Contains(param_id)).ToList<Book>(); }
-                */
+                {
+                    // Get Book
+                    Book b = entities.Books.Where(x => x.ISBN == isbn).First();
 
+                    // Update Elements
+                    Image1.ImageUrl = "~/Reference/Images/" + b.ISBN + ".jpg";
+                    title.InnerText = b.Title;
+                    author.InnerText = b.Author;
+                    synopsis.InnerText = b.Synopsis;
+
+                    details_author.InnerText = b.Author;
+                    details_name.InnerText = b.Title;
+                    details_isbn.InnerText = b.ISBN;
+
+                }
             }
 
-
-
-            // Transform the page to match page details.
         }
+
+
+
     }
 }
