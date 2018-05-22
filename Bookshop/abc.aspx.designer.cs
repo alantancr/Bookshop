@@ -7,10 +7,10 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Bookshop.Protect {
+namespace Bookshop {
     
     
-    public partial class admin_update {
+    public partial class abc {
         
         /// <summary>
         /// Button1 control.

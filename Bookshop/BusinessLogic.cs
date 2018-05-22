@@ -167,7 +167,7 @@ namespace Bookshop
 
 		//To add Book
 
-		protected void Savebook(string title, int categoryid, string isbn, string author, int stock, decimal price,
+		public static void Savebook(string title, int categoryid, string isbn, string author, int stock, decimal price,
 			string synopsis, decimal discount)
 		{
 			using (BookshopModel entities = new BookshopModel())
@@ -190,7 +190,7 @@ namespace Bookshop
 		}
 
 		//Toaddcategory
-		protected void SaveCategory(string category)
+		public static void SaveCategory(string category)
 		{
 			using (BookshopModel entities = new BookshopModel())
 			{
