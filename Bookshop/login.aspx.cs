@@ -20,16 +20,17 @@ namespace Bookshop
         }
 
         protected void LoginButton_Click(object sender, EventArgs e)
-        {
+        {/*
             if (User.IsInRole("user"))
             {
-                Response.Redirect("/protect/default.aspx");
+                Response.Redirect("/browse.aspx");
             }
 
             else if (User.IsInRole("admin"))
             {
                 Response.Redirect("/protect/admin.aspx");
             }
+            */
         }
     }
 }

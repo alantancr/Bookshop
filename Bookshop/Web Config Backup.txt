@@ -10,7 +10,10 @@
   </appSettings>
 
   <system.web>
-    <authentication mode="Forms" />
+    <authentication mode="Forms">
+       <forms loginUrl="~/login.aspx" defaultUrl="~/protect/default.aspx" timeout="2880" />
+    </authentication>
+    
     <compilation debug="true" targetFramework="4.6.1" />
     <httpRuntime targetFramework="4.6.1" />
   </system.web>
@@ -21,4 +24,7 @@
     </compilers>
   </system.codedom>
 
-<connectionStrings><add name="BookshopEntities" connectionString="data source=(local);initial catalog=Bookshop;integrated security=True;MultipleActiveResultSets=True;App=EntityFramework" providerName="System.Data.SqlClient" /></connectionStrings></configuration>
+  <connectionStrings>
+    <add name="BookshopEntities" connectionString="data source=(local);initial catalog=Bookshop;integrated security=True;MultipleActiveResultSets=True;App=EntityFramework" providerName="System.Data.SqlClient" />
+  </connectionStrings>
+</configuration>
