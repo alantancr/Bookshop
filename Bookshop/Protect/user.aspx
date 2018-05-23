@@ -6,8 +6,11 @@
     
     <div class="container text-center">
 
-        <h2 id="header_text">You bought some books, good job!</h2>
+        <h2><asp:Label ID="Label1" runat="server" Text="Label1" /></h2> 
         <img id="confirmation_checkmark" src="../Reference/Images/checkmark.jpg">
+        <br />
+       <h3><asp:Label ID="Label2" runat="server" Text="Labe2" /></h3>  
     </div>
+
 
 </asp:Content>

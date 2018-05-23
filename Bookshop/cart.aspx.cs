@@ -6,6 +6,7 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using System.Security.Principal;
 
+//Author - Tharrani Udhayasekar 
 namespace Bookshop
 {
     public partial class cart : System.Web.UI.Page
@@ -31,9 +32,9 @@ namespace Bookshop
                 Label1.Visible = false;
                 Button1.Visible = true;
             }
-
         }
 
+        //To check if cart is empty
         protected void CheckNullCart(object sender, EventArgs e)
         {
             List<Item> cart = (List<Item>)Session["cart"];
@@ -50,24 +51,21 @@ namespace Bookshop
             }
         }
 
+        //Redirect to Login page
         protected void Button1_Click(object sender, EventArgs e)
         {
-            IIdentity id = User.Identity;
-            if (id.IsAuthenticated)
-            {
-                Response.Redirect("~/Protect/user.aspx");
-            }
-            else
-            {
-                Response.Redirect("~/protect/Default.aspx");
-            }
+           Response.Redirect("~/protect/Default.aspx");
         }
 
+
+        //Redirect to browse page
         protected void Button2_Click(object sender, EventArgs e)
         {
             Response.Redirect("~/Browse.aspx");
         }
 
+
+        //Check if the item in cart is already existing 
         private int isExisting(int id)
         {
             List<Item> cart = (List<Item>)Session["cart"];
@@ -77,7 +75,7 @@ namespace Bookshop
             return -1;
         }
 
-
+        //To remove items from cart 
         protected void Button3_Click(object sender, EventArgs e)
         {
             Button lb = (Button)sender;
@@ -101,6 +99,7 @@ namespace Bookshop
 
         }
 
+        //To reduce quantity of item in cart 
         protected void Button4_Click1(object sender, EventArgs e)
         {
             Button lb = (Button)sender;
@@ -122,6 +121,7 @@ namespace Bookshop
             CheckNullCart(this, e);
         }
 
+        //To increase item quantity in cart 
         protected void Button5_Click(object sender, EventArgs e)
         {
             Button lb = (Button)sender;
@@ -143,8 +143,9 @@ namespace Bookshop
             CheckNullCart(this, e);
         }
 
-        int totalUnitPrice = 0;
-        int totalQuantitysold = 0;
+        //Footer template to calculate net price/quantity 
+        decimal totalUnitPrice = 0;
+        decimal totalQuantitysold = 0;
         protected void GridViewCart_RowDataBound(object sender, GridViewRowEventArgs e)
         {
 
@@ -152,8 +153,8 @@ namespace Bookshop
             if (e.Row.RowType == DataControlRowType.DataRow)
             {
 
-                totalUnitPrice += ((Convert.ToInt32(DataBinder.Eval(e.Row.DataItem, "BK.finalprice"))) * (Convert.ToInt32(DataBinder.Eval(e.Row.DataItem, "Quantity"))));
-                totalQuantitysold += Convert.ToInt32(DataBinder.Eval(e.Row.DataItem, "Quantity"));
+                totalUnitPrice += ((Convert.ToDecimal(DataBinder.Eval(e.Row.DataItem, "BK.finalprice"))) * (Convert.ToDecimal(DataBinder.Eval(e.Row.DataItem, "Quantity"))));
+                totalQuantitysold += Convert.ToDecimal(DataBinder.Eval(e.Row.DataItem, "Quantity"));
             }
 
             else if (e.Row.RowType == DataControlRowType.Footer)
@@ -165,6 +166,7 @@ namespace Bookshop
                 e.Row.Cells[8].Font.Bold = true;
 
                 e.Row.Cells[10].Text = string.Format($"{totalUnitPrice:C2}");
+                Session["TotalPrice"] = totalUnitPrice;
                 e.Row.Cells[10].Font.Bold = true;
             }
         }

@@ -20,11 +20,13 @@ namespace Bookshop.Protect
             if (Roles.IsUserInRole("admin"))
             {
                 adminContainer.Visible = true;
+                userContainer.Visible = false;
             }
 
             else
             {
                 adminContainer.Visible = false;
+                userContainer.Visible = true;
             }
 
         }
@@ -37,6 +39,16 @@ namespace Bookshop.Protect
         protected void Button2_Click(object sender, EventArgs e)
         {
             Response.Redirect("~/Protect/admin_add.aspx");
+        }
+
+        protected void Button3_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("~/cart.aspx");
+        }
+
+        protected void Button4_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("~/Protect/user.aspx");
         }
     }
 }

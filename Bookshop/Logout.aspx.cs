@@ -17,6 +17,7 @@ namespace Bookshop
 
         protected void Button1_Click(object sender, EventArgs e)
         {
+            Session.Contents.RemoveAll();
             FormsAuthentication.SignOut();
             Response.Redirect("~/Login.aspx");
         }
