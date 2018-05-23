@@ -89,44 +89,45 @@ namespace Bookshop
             HiddenField hd = (HiddenField)lb.FindControl("HiddenFieldID");
             int id = Convert.ToInt32(hd.Value);
             BookshopModel b = new BookshopModel();
-            using(TransactionScope ts = new TransactionScope())
+            try
             {
-                if (Session["cart"] == null)
+                using (TransactionScope ts = new TransactionScope())
                 {
-                    List<Item> cart = new List<Item>();
-                    cart.Add(new Item(b.Books.Where(x => x.BookID == id).First(), 1));
-                    Session["cart"] = cart;
-                }
-                else
-                {
-                    List<Item> cart = (List<Item>)Session["cart"];
-                    int index = isExisting(id);
-                    if (index == -1)
+                    if (Session["cart"] == null)
                     {
+                        List<Item> cart = new List<Item>();
                         cart.Add(new Item(b.Books.Where(x => x.BookID == id).First(), 1));
+                        Session["cart"] = cart;
                     }
                     else
                     {
-                        cart[index].Quantity++;
-                        Session["cart"] = cart;
+                        List<Item> cart = (List<Item>)Session["cart"];
+                        int index = isExisting(id);
+                        if (index == -1)
+                        {
+                            cart.Add(new Item(b.Books.Where(x => x.BookID == id).First(), 1));
+                        }
+                        else
+                        {
+                            cart[index].Quantity++;
+                            Session["cart"] = cart;
+                        }
                     }
-                    Transaction.Current.TransactionCompleted += Current_TransactionCompleted;
+                    MsgBox("Item added to cart");
                     ts.Complete();
                 }
-            }
             
-        }
+            }
+            catch(System.Transactions.TransactionException ex)
+            {
+                MsgBox(ex.ToString());
+            }
+            catch
+            {
+                MsgBox("ERROR: Item not added");
+            }
 
-        private void Current_TransactionCompleted(object sender, TransactionEventArgs e)
-        {
-            if (e.Transaction.TransactionInformation.Status == TransactionStatus.Committed)
-            {
-                MsgBox("Item added to cart...");
-            }
-            else if (e.Transaction.TransactionInformation.Status == TransactionStatus.Aborted)
-            {
-                MsgBox("ERROR: Failed adding item to cart..");
-            }
+
         }
 
         private void MsgBox(string sMessage)
