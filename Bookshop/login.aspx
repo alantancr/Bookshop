@@ -9,10 +9,10 @@
     <div class="col-md-12" >
         <asp:Login ID="Login1"  runat="server">
             <LayoutTemplate>
-                <table cellpadding="1" cellspacing="0" style="border-collapse:collapse;">
+                <table style="border-collapse:collapse;">
                     <tr>
                         <td>
-                            <table cellpadding="0">
+                            <table>
                                 <tr>
                                     <td align="center" colspan="2">Log In</td>
                                 </tr>

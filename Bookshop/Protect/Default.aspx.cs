@@ -5,6 +5,7 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using System.Security.Principal;
+using System.Web.Security;
 
 namespace Bookshop.Protect
 {
@@ -13,29 +14,29 @@ namespace Bookshop.Protect
         protected void Page_Load(object sender, EventArgs e)
         {
             IIdentity id = User.Identity;
-            debugLabel.InnerText = String.Format("IsAuthenticated:{0},Name:{1},Type:{2}", id.IsAuthenticated, id.Name, id.AuthenticationType);
+            //debugLabel.InnerText = String.Format("IsAuthenticated:{0}, Name:{1}, Type:{2}, User Roles: {3}", id.IsAuthenticated, id.Name, id.AuthenticationType, Roles.GetRolesForUser().ToString());
+            debugLabel.InnerText = String.Format("Welcome, {0}!", id.Name);
 
-            if (User.IsInRole("user"))
+            if (Roles.IsUserInRole("admin"))
             {
-                if (Request.QueryString["checkout"] == "true")
-                {
-                    Response.Redirect("~/protect/user.aspx");
-                }
-
-                else
-                {
-                    string s = "~/cart.aspx";
-                    Response.Redirect(url: $"~/{s}");
-                }
-
-                
+                adminContainer.Visible = true;
             }
-            else if (User.IsInRole("admin"))
+
+            else
             {
-                Response.Redirect("~/protect/admin.aspx");
+                adminContainer.Visible = false;
             }
-         
-           
+
+        }
+
+        protected void Button1_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("~/Protect/admin_update.aspx");
+        }
+
+        protected void Button2_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("~/Protect/admin_add.aspx");
         }
     }
 }

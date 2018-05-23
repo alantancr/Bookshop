@@ -85,6 +85,7 @@
     <Content Include="Details.aspx" />
     <Content Include="Global.asax" />
     <Content Include="login.aspx" />
+    <Content Include="Logout.aspx" />
     <Content Include="Protect\admin.aspx" />
     <Content Include="Protect\admin_add.aspx" />
     <Content Include="Protect\admin_update.aspx" />
@@ -219,6 +220,13 @@
     <Compile Include="login.aspx.designer.cs">
       <DependentUpon>login.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Logout.aspx.cs">
+      <DependentUpon>Logout.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Logout.aspx.designer.cs">
+      <DependentUpon>Logout.aspx</DependentUpon>
+    </Compile>
     <Compile Include="OrderDetail.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Protect\admin.aspx.cs">
@@ -262,7 +270,7 @@
     <None Include="packages.config" />
     <None Include="Properties\PublishProfiles\Bookstore Publish.pubxml" />
     <None Include="Properties\PublishProfiles\CustomProfile.pubxml" />
-    <None Include="Properties\PublishProfiles\CustomProfile1.pubxml" />
+    <None Include="Properties\PublishProfiles\Root Publish.pubxml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
