@@ -5,6 +5,7 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using System.Transactions;
+using System.Configuration;
 
 namespace Bookshop
 {
@@ -24,8 +25,7 @@ namespace Bookshop
                     }
                     else
                     {
-                        GridView1.DataSource = b.Books.ToList<Book>();
-                        GridView1.DataBind();
+                        GenerateGrid();
                     }
                     
                     var q = b.Categories.Select(x => x.Name).ToList();
@@ -44,10 +44,13 @@ namespace Bookshop
         protected void DropDownList1_SelectedIndexChanged(object sender, EventArgs e)
         {
             GenerateGrid();
+            TextBox1.Text = "";
+           
         }
 
         protected void GenerateGrid()
         {
+            Label1.Visible = false;
             using (BookshopModel b = new BookshopModel())
             {
                 if (DropDownList1.SelectedValue != "0")
@@ -74,7 +77,17 @@ namespace Bookshop
                 {
                     GridView1.DataSource = q.ToList<Book>();
                     GridView1.DataBind();
+                    if (GridView1.Rows.Count == 0)
+                    {
+                        Label1.Visible = true;
+                    }
+                    else
+                    {
+                        Label1.Visible = false;
+                    }
                 }
+                
+                DropDownList1.SelectedIndex = 0;
             }
         }
 
@@ -170,6 +183,12 @@ namespace Bookshop
                 }
 
             }
+        }
+
+        protected void GridView1_PageIndexChanging(object sender, GridViewPageEventArgs e)
+        {
+            GridView1.PageIndex = e.NewPageIndex;
+            GenerateGrid();
         }
     }
 }

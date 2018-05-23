@@ -16,7 +16,7 @@
         <asp:TextBox ID="TextBox1" runat="server"></asp:TextBox>
 
         <asp:DropDownList ID="DropDownList1" runat="server" OnSelectedIndexChanged="DropDownList1_SelectedIndexChanged" AutoPostBack="True">
-            <asp:ListItem Value="0">Category</asp:ListItem>
+            <asp:ListItem Value="0">All Category</asp:ListItem>
         </asp:DropDownList>
 
         <asp:Button ID="Button1" runat="server" Text="Search" OnClick="Button1_Click" CssClass="btn btn-search" />
@@ -26,7 +26,9 @@
     <h3>Search Results</h3>
     <div style="margin-left: 40px">
 
-            <asp:GridView ID="GridView1" GridLines="None" runat="server" AutoGenerateColumns="False" Width="676px" CssClass="table table-dark" OnRowDataBound="GridView1_RowDataBound">
+            <asp:Label ID="Label1" runat="server" Font-Bold="True" Font-Size="XX-Large" ForeColor="#FF3300" Text="No Results Found"></asp:Label>
+
+            <asp:GridView ID="GridView1" GridLines="None" runat="server" AutoGenerateColumns="False" Width="676px" CssClass="table table-dark" OnRowDataBound="GridView1_RowDataBound" AllowPaging="True" OnPageIndexChanging="GridView1_PageIndexChanging" PageSize="10">
                 <Columns>
                     <asp:TemplateField>
                         <ItemTemplate>
